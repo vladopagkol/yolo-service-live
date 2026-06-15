@@ -1,3 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p \
+  docs/project \
+  docs/architecture \
+  docs/api \
+  docs/security \
+  docs/compatibility \
+  docs/ml \
+  docs/deployment \
+  docs/quality \
+  docs/decisions
+
+cat > AGENTS.md <<'EOF'
 # AGENTS.md
 
 ## Purpose
@@ -29,30 +44,6 @@ Agents must preserve the long-term project decisions recorded in `docs/`.
 8. Update documentation when changing architecture, API behavior, security behavior, deployment behavior, or model behavior.
 9. Add tests for backend logic and API behavior whenever practical.
 10. Preserve existing public API contracts unless the change is explicitly versioned.
-
----
-
-## Required Review Workflow
-
-All coding-agent work must follow this review workflow:
-
-1. The coding agent creates or updates a pull request.
-2. The user copies the coding agent response back into the strategic chat.
-3. The strategic agent reviews the pull request and the coding-agent response.
-4. Do not merge until the strategic agent has reviewed and approved the work.
-
----
-
-## Branching Policy
-
-Unless explicitly instructed otherwise:
-
-1. Each work order must create a new branch from the current default branch, preferably `main`.
-2. Each PR should target the current default branch, preferably `main`.
-3. Stacked PRs should be avoided unless the user explicitly asks for them.
-4. After a PR is approved and merged, the next work-order branch should be created from the updated default branch.
-5. Work-order branches may be deleted after merge.
-6. The coding agent must clearly state the PR base branch and head branch in its final response.
 
 ---
 
@@ -158,20 +149,4 @@ Run the relevant commands, for example:
 - ruff check
 - npm test
 - npm run lint
-```
-
-## Coding Agent Completion Requirement
-
-When the coding agent finishes a work order, its final response must include:
-
-- pull request number,
-- pull request URL,
-- base branch,
-- head branch,
-- summary of changed files,
-- tests run,
-- test result,
-- known limitations,
-- documentation changed,
-- dependencies added,
-- explicit confirmation that no GPU, Docker, Redis, database, model, or inference dependency was added.
+EOF
