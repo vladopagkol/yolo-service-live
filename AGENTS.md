@@ -32,6 +32,15 @@ Agents must preserve the long-term project decisions recorded in `docs/`.
 
 ---
 
+## Required Review Workflow
+
+All coding-agent work must follow this review workflow:
+
+1. The coding agent creates or updates a pull request.
+2. The user copies the coding agent response back into the strategic chat.
+
+---
+
 ## PR Size Guidance
 
 The coding agent is expected to work best with small chunks.
@@ -134,3 +143,11 @@ Run the relevant commands, for example:
 - ruff check
 - npm test
 - npm run lint
+```
+
+## Coding Agent Completion Requirement
+
+When the coding agent finishes a work order, its final response must include:
+
+- pull request number,
+- pull request URL,
